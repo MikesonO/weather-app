@@ -1,3 +1,4 @@
+import api from './modules/api';
 import './styles/styles.scss';
 
-console.log("test");
+api();
