@@ -7,8 +7,15 @@ const getWeather = async () => {
       mode: 'cors'
     });
 
-    const weatherData = await inputResponse.json();
-    console.log(weatherData[0]);
+    // Fetch Location
+    const locationData = await inputResponse.json();
+
+    const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${locationData[0].lat}&lon=${locationData[0].lon}&appid=${apiKey}`);
+
+    // Fetch Weather Data for Location
+    const weatherData = await weatherResponse.json();
+
+    console.log(weatherData);
 
   } catch (error) {
     console.log(error);
