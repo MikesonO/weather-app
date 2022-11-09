@@ -1,4 +1,4 @@
-import api from './modules/api';
+import weatherApi from './modules/weatherApi';
 import './styles/styles.scss';
 
-api();
+weatherApi();
