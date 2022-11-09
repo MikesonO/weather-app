@@ -1,5 +1,6 @@
 import conversion from "./tempConversion";
 import getLocalTime from "./dateConversion";
+import helperFunctions from "./helperFunctions";
 
 const apiKey = "3c6d04ecb7b45ddcda56c7eca816cb5f";
 
@@ -27,12 +28,20 @@ const getWeather = async () => {
     const celsius = conversion.kelvinToCelsius(temp);
     const fahrenheit = conversion.kelvinToFahrenheit(temp);
 
+    // Get Temperature
     console.log(`celsius ${celsius}`);
     console.log(conversion.toCelsius(fahrenheit));
     console.log(`fahrenheit ${fahrenheit}`);
     console.log(conversion.toFahrenheit(celsius));
 
-    console.log(getLocalTime(weatherData.timezone))
+    // Get Time and Date
+    console.log(getLocalTime(weatherData.timezone));
+
+    // Get Weather
+    console.log(helperFunctions.capitaliseWords(weatherData.weather[0].description));
+
+    // Get Location Name and Country
+    console.log(`${locationData[0].name}, ${locationData[0].country}`);
 
   } catch (error) {
     console.log(error);
