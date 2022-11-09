@@ -1,4 +1,5 @@
 import conversion from "./tempConversion";
+import getLocalTime from "./dateConversion";
 
 const apiKey = "3c6d04ecb7b45ddcda56c7eca816cb5f";
 
@@ -31,6 +32,7 @@ const getWeather = async () => {
     console.log(`fahrenheit ${fahrenheit}`);
     console.log(conversion.toFahrenheit(celsius));
 
+    console.log(getLocalTime(weatherData.timezone))
 
   } catch (error) {
     console.log(error);
