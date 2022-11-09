@@ -23,6 +23,7 @@ const getWeather = async () => {
 
     const {
       temp,
+      humidity
     } = weatherData.main;
 
     const celsius = conversion.kelvinToCelsius(temp);
@@ -42,6 +43,14 @@ const getWeather = async () => {
 
     // Get Location Name and Country
     console.log(`${locationData[0].name}, ${locationData[0].country}`);
+
+    // Get Wind Speed
+    console.log(`Wind Speed: ${weatherData.wind.speed} km/h`);
+    console.log(`Degree Angle: ${weatherData.wind.deg}°`);
+
+    // Get Humidity
+    console.log(`Humidity: ${humidity}%`);
+
 
   } catch (error) {
     console.log(error);
