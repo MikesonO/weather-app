@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MikesonO/weather-app#readme",
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
     "css-loader": "^6.7.1",
     "eslint": "^8.26.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -30,6 +31,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
     "date-fns": "^2.29.3"
   }
 }
