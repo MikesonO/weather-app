@@ -1,3 +1,77 @@
-body{
+/* Varirables */
+/** color **/
+$color1: #F4F4F2;
+$color2: #686D76;
+$color3: rgba(34, 40, 49, 0.75);
+
+
+/** border-radius **/
+$radius: 1.5rem;
+
+/* Element Selectors */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
   background-color: violet;
+}
+
+main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* Class Selectors */
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  width: 30vw;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  background-color: $color3;
+  border-radius: $radius;
+  user-select: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+  input {
+    font-family: inherit;
+    font-size: inherit;
+    color: $color1;
+    padding: .75rem 0;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+
+    &::placeholder {
+      color: $color1;
+    }
+  }
+
+  #search-icon {
+    padding-left: 1rem;
+    font-size: 1rem;
+    color: $color1;
+  }
+
+  #clear-icon {
+    padding-right: 1rem;
+    font-size: 1rem;
+    color: $color1;
+    cursor: pointer;
+  }
 }
