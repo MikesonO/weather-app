@@ -45,7 +45,8 @@ const getWeather = async () => {
     console.log(`${locationData[0].name}, ${locationData[0].country}`);
 
     // Get Wind Speed
-    console.log(`Wind Speed: ${weatherData.wind.speed} km/h`);
+    console.log(`Wind Speed: ${Math.round(weatherData.wind.speed *  2.237)
+    } km/h`);
     console.log(`Degree Angle: ${weatherData.wind.deg}°`);
 
     // Get Humidity
