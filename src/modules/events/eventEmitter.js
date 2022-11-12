@@ -1,14 +1,15 @@
+import getWeather from "../functions/weatherApi";
+
 export default function eventEmitter() {
   const searchBar = document.getElementById("city");
   const clearButton = document.querySelector("#clear-button");
+  const searchButton = document.getElementById("search-button");
 
   // Displays clear button if value is not empty
   searchBar.addEventListener("keyup", () => {
     if (searchBar.value === "") {
-      console.log(searchBar.value)
       clearButton.classList.remove("active");
     } else {
-      console.log(searchBar.value)
       clearButton.classList.add("active");
     }
   })
@@ -19,5 +20,6 @@ export default function eventEmitter() {
     searchBar.value = "";
   })
 
-
+  // Get User's Input
+  searchButton.addEventListener("click", () => getWeather(searchBar.value));
 }
