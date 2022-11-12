@@ -1,13 +1,11 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
 /* Varirables */
 /** light mode **/
 $lm-color1: rgba(244, 244, 242, 0.75);
 $lm-color2: #686D76;
 $lm-color3: rgb(34, 40, 49);
-
 
 /** border-radius **/
 $radius: 1.5rem;
@@ -44,6 +42,7 @@ main {
   gap: 1rem;
   position: relative;
   width: 30vw;
+  padding: 0 1rem;
   margin: 0 auto;
   font-size: 1.2rem;
   background-color: $lm-color1;
@@ -68,15 +67,26 @@ main {
   }
 
   #search-icon {
-    padding-left: 1rem;
     font-size: 1rem;
     color: $lm-color3;
   }
 
-  #clear-icon {
-    padding-right: 1rem;
-    font-size: 1rem;
-    color: $lm-color3;
+  #clear-button{
+    display: none;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+    outline: none;
+
+    &.active{
+      display: block;
+    }
+
+    #clear-icon {
+      font-size: 1rem;
+      color: $lm-color3;
+      pointer-events: none;
+    }
+
   }
 }
