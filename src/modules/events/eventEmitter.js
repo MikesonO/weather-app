@@ -22,4 +22,8 @@ export default function eventEmitter() {
 
   // Get User's Input
   searchButton.addEventListener("click", () => getWeather(searchBar.value));
+
+
+  // Fetch Weather when page is loaded
+  getWeather("london");
 }
