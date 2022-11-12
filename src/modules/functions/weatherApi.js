@@ -1,8 +1,8 @@
-import conversion from "./tempConversion";
-import getLocalTime from "./dateConversion";
-import helperFunctions from "./helperFunctions";
+import conversion from './tempConversion';
+import getLocalTime from './dateConversion';
+import helperFunctions from './helperFunctions';
 
-const apiKey = "3c6d04ecb7b45ddcda56c7eca816cb5f";
+const apiKey = '3c6d04ecb7b45ddcda56c7eca816cb5f';
 
 /* Async Function fetching API */
 const getWeather = async () => {
