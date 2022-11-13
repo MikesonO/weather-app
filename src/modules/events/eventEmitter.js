@@ -18,6 +18,7 @@ export default function eventEmitter() {
   clearButton.addEventListener("click", () => {
     clearButton.classList.remove("active");
     searchBar.value = "";
+    searchBar.select();
   })
 
   // Get User's Input

@@ -12,7 +12,7 @@ $color3: #222831;
 $radius: 1.5rem;
 
 /** transition duration **/
-$duration: .3s; 
+$duration: .3s;
 
 /* Element Selectors */
 *,
@@ -25,7 +25,7 @@ $duration: .3s;
 
 body {
   height: 100vh;
-  background-color: violet;
+  background-color: $color3;
   font-family: 'Poppins', sans-serif;
   display: grid;
   grid-template-rows: 100px auto 50px;
@@ -37,19 +37,19 @@ header {
   align-items: center;
 }
 
-footer{
+footer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-a{
+a {
   text-decoration: none;
-  color: $color3;
+  color: $color2;
   transition: color $duration,
     font-size $duration;
 
-  &:hover{
+  &:hover {
     color: $color1;
     font-size: 1.025rem;
   }
@@ -85,7 +85,7 @@ button {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: background-color $duration;
 
-    &:has(input:focus){
+    &:has(input:focus) {
       background-color: $color1;
     }
 
@@ -94,7 +94,6 @@ button {
       font-family: inherit;
       font-size: inherit;
       color: $color3;
-      padding: .5rem 0;
       width: 100%;
       outline: none;
       border: none;
@@ -122,8 +121,9 @@ button {
   }
 
   #search-button {
-    width: 53px;
-    height: 53px;
+    position: relative;
+    width: 40px;
+    height: 40px;
     background-color: $color1-t;
     border-radius: 50%;
     padding: 1rem;
@@ -139,7 +139,14 @@ button {
     }
 
     #search-icon {
-      font-size: 1.25rem;
+      position: absolute;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      font-size: 1.1rem;
       color: $color3;
       pointer-events: none;
       transition: scale $duration;
