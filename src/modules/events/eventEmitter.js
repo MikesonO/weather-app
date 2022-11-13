@@ -1,7 +1,7 @@
 import getWeather from "../functions/weatherApi";
 
 export default function eventEmitter() {
-  const searchBar = document.getElementById("city");
+  const searchBar = document.getElementById("city-search");
   const clearButton = document.querySelector("#clear-button");
   const searchButton = document.getElementById("search-button");
 
