@@ -149,32 +149,45 @@ header {
 
 main {
   color: $color1;
+  padding: 0 15%;
 
   .weather-info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-areas:
-      'city-info additional-info'
-      'temp-info additional-info'
-      'forecast-info forecast-info';
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
     .city-info {
-      grid-area: city-info;
+      display: flex;
+      justify-content: space-between;
+
+      .city-location {
+        display: flex;
+        align-items: flex-end;
+
+        #city {
+          font-weight: 300;
+        }
+      }
+
+      .city-date {
+        display: flex;
+        flex-direction: column;
+
+        #date {
+          align-self: flex-end;
+        }
+
+      }
+
+
+
     }
 
-    .temp-info {
-      grid-area: temp-info;
-    }
+    .temp-info {}
 
-    .additional-info {
-      grid-area: additional-info;
-    }
+    .additional-info {}
 
-    .forecast-info {
-      grid-area: forecast-info;
-    }
+    .forecast-info {}
 
 
   }

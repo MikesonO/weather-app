@@ -1,6 +1,7 @@
 import conversion from './tempConversion';
 import getLocalTime from './dateConversion';
 import helperFunctions from './helperFunctions';
+import displayData from './displayData';
 
 const apiKey = '3c6d04ecb7b45ddcda56c7eca816cb5f';
 
@@ -21,6 +22,8 @@ const getWeather = async (input) => {
 
     console.log(weatherData);
 
+    displayData(locationData[0], weatherData);
+
     const {
       temp,
       humidity
@@ -35,14 +38,8 @@ const getWeather = async (input) => {
     console.log(`fahrenheit ${fahrenheit}`);
     console.log(conversion.toFahrenheit(celsius));
 
-    // Get Time and Date
-    console.log(getLocalTime(weatherData.timezone));
-
     // Get Weather
     console.log(helperFunctions.capitaliseWords(weatherData.weather[0].description));
-
-    // Get Location Name and Country
-    console.log(`${locationData[0].name}, ${locationData[0].country}`);
 
     // Get Wind Speed
     console.log(`Wind Speed: ${Math.round(weatherData.wind.speed *  2.237)
