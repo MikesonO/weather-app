@@ -4,6 +4,7 @@ export default function eventEmitter() {
   const searchBar = document.getElementById("city-search");
   const clearButton = document.querySelector("#clear-button");
   const searchButton = document.getElementById("search-button");
+  const tempUnit = document.getElementById("temp-unit");
 
   // Displays clear button if value is not empty
   searchBar.addEventListener("keyup", () => {
@@ -23,6 +24,20 @@ export default function eventEmitter() {
 
   // Get User's Input
   searchButton.addEventListener("click", () => getWeather(searchBar.value));
+
+  tempUnit.addEventListener("click", () => {
+    const city = document.getElementById("city").innerText;
+    console.log(city);
+    if (tempUnit.classList.contains("metric")) {
+      tempUnit.classList.remove("metric");
+      tempUnit.classList.add("imperial");
+      getWeather(city);
+    } else if (tempUnit.classList.contains("imperial")) {
+      tempUnit.classList.remove("imperial");
+      tempUnit.classList.add("metric");
+      getWeather(city);
+    }
+  });
 
 
   // Fetch Weather when page is loaded

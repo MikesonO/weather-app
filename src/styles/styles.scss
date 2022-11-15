@@ -154,6 +154,7 @@ main {
   .weather-info {
     display: flex;
     flex-direction: column;
+    gap: 5rem;
     width: 100%;
 
     .city-info {
@@ -184,11 +185,68 @@ main {
     }
 
     .temp-info {
-      div{
-        width: 256px;
-        height: 256px;
-        border: 2px solid white;
-      }
+      display: flex;
+      gap: 1.5rem;
+      position: relative;
+
+        #weather-icon{
+          width: 150px;
+        }
+
+        .temperature{
+          display: flex;
+
+          #temp{
+            font-size: 6rem;
+          }
+
+          #temp-unit{
+            height: fit-content;
+            color: $color1;
+            font-size: 1.5rem;
+            display: flex;
+            padding: 0 .5rem;
+            position: relative;
+            top: 30px;
+
+            &.metric{
+              #fahrenheit{
+                color: $color2;
+              }
+            }
+
+            &.imperial{
+              #celsius{
+                color: $color2;
+              }
+            }
+
+
+            #celsius{
+              padding-right:.5rem;
+              transition: color $duration;
+            }
+
+            #fahrenheit{
+              padding-left:.25rem;
+              transition: color $duration;
+            }
+          }
+
+          #description{
+            font-weight: 300;
+            position: absolute;
+            bottom: 0;
+          }
+
+
+
+        }
+
+  
+
+      
+
     }
 
     .additional-info {}
