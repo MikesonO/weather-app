@@ -183,7 +183,13 @@ main {
 
     }
 
-    .temp-info {}
+    .temp-info {
+      div{
+        width: 256px;
+        height: 256px;
+        border: 2px solid white;
+      }
+    }
 
     .additional-info {}
 

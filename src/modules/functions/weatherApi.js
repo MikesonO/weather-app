@@ -1,5 +1,4 @@
 import conversion from './tempConversion';
-import getLocalTime from './dateConversion';
 import helperFunctions from './helperFunctions';
 import displayData from './displayData';
 
