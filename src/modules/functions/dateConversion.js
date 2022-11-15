@@ -2,13 +2,21 @@ import {
   format
 } from 'date-fns';
 
+const formatTime = (timezone, time) => {
+  const oldTime = time * 1000;
+  const localTime = oldTime + 1000 * timezone;
+  const localDate = new Date(localTime);
+  const formattedTime = format(localDate, "p")
+  return formattedTime;
+};
+
 const isDayTime = (date) => {
   const hours = date.getHours()
   const dayTime = hours > 6 && hours < 20;
   return dayTime;
 }
 
-export default function getLocalDate(timezone) {
+function getLocalDate(timezone) {
   const date = new Date();
   const time = date.getTime();
   const localTime = time + 1000 * timezone;
@@ -24,4 +32,9 @@ export default function getLocalDate(timezone) {
     time: getTime,
     dayTime: checkTime
   }
+}
+
+export default {
+  getLocalDate,
+  formatTime
 }

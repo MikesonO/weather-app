@@ -38,19 +38,70 @@
           </div>
         </div>
 
-        <div class="temp-info">
-          <img id="weather-icon" src="" alt="Weather Icon" />
-          <div class="temperature">
-            <h1 id="temp"></h1>
-            <button id="temp-unit" class="metric">
-              <span id="celsius">°C</span>│<span class="gap"></span
-              ><span id="fahrenheit">°F</span>
-            </button>
-            <h3 id="description"></h3>
+        <div class="weather-detail">
+          <div class="temp-info">
+            <img id="weather-icon" src="" alt="Weather Icon" />
+            <div class="temperature">
+              <h1 id="temp"></h1>
+              <button id="temp-unit" class="metric">
+                <span id="celsius">°C</span>│<span class="gap"></span
+                ><span id="fahrenheit">°F</span>
+              </button>
+              <h3 id="description"></h3>
+            </div>
+          </div>
+
+          <div class="additional-info">
+            <div class="card">
+              <i class="icon fa-solid fa-temperature-quarter"></i>
+              <div class="info">
+                <p>High</p>
+                <p id="max-temp">20°C</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <i id="wind-speed-arrow" class="icon fa-solid fa-arrow-up"></i>
+              <div class="info">
+                <p>Wind</p>
+                <p id="wind-speed">12 mph</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="sun-icon" src="../src/assets/icons/sunrise.svg" />
+              <div class="info">
+                <p>Sunrise</p>
+                <p id="sunrise">08:00 AM</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <i class="icon fa-solid fa-temperature-quarter"></i>
+              <div class="info">
+                <p>Low</p>
+                <p id="min-temp">12°C</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <i class="icon fa-solid fa-droplet"></i>
+              <div class="info">
+                <p>Humidity</p>
+                <p id="humidity">50%</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <img class="sun-icon" src="../src/assets/icons/sunset.svg" />
+              <div class="info">
+                <p>Sunset</p>
+                <p id="sunset">6:00 PM</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="additional-info"></div>
         <div class="forecast-info"></div>
       </div>
     </main>

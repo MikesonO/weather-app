@@ -184,23 +184,30 @@ main {
 
     }
 
-    .temp-info {
+    .weather-detail {
       display: flex;
-      gap: 1.5rem;
       position: relative;
+      flex-wrap: wrap;
 
-        #weather-icon{
+      .temp-info {
+        flex: 1;
+        display: flex;
+        gap: 1.5rem;
+        position: relative;
+        border-right: 2px solid $color1;
+
+        #weather-icon {
           width: 150px;
         }
 
-        .temperature{
+        .temperature {
           display: flex;
 
-          #temp{
+          #temp {
             font-size: 6rem;
           }
 
-          #temp-unit{
+          #temp-unit {
             height: fit-content;
             color: $color1;
             font-size: 1.5rem;
@@ -209,47 +216,74 @@ main {
             position: relative;
             top: 30px;
 
-            &.metric{
-              #fahrenheit{
+            &.metric {
+              #fahrenheit {
                 color: $color2;
               }
             }
 
-            &.imperial{
-              #celsius{
+            &.imperial {
+              #celsius {
                 color: $color2;
               }
             }
 
-
-            #celsius{
-              padding-right:.5rem;
+            #celsius {
+              padding-right: .5rem;
               transition: color $duration;
             }
 
-            #fahrenheit{
-              padding-left:.25rem;
+            #fahrenheit {
+              padding-left: .25rem;
               transition: color $duration;
             }
           }
 
-          #description{
+          #description {
             font-weight: 300;
             position: absolute;
             bottom: 0;
           }
 
+        }
+
+      }
+
+      .additional-info {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        padding-left: 2.5rem;
+
+        .card {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          .icon {
+            font-size: 2rem;
+          }
+
+          .sun-icon {
+            filter: brightness(0) invert(1);
+            width: 32px;
+          }
+
+          .info {
+            display: flex;
+            flex-direction: column;
+
+            p:last-child {
+              font-weight: bold;
+            }
+          }
 
 
         }
 
-  
-
-      
-
+      }
     }
-
-    .additional-info {}
 
     .forecast-info {}
 

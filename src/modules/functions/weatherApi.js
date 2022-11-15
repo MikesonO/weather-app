@@ -29,7 +29,7 @@ const getWeather = async (input) => {
 
     console.log(weatherData);
 
-    displayData(locationData[0], weatherData);
+    displayData(locationData[0], weatherData, unit);
 
     const {
       humidity
