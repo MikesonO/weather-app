@@ -1,6 +1,6 @@
 import displayData from './displayData';
 
-const apiKey = '3c6d04ecb7b45ddcda56c7eca816cb5f';
+const apiKey = process.env.API_KEY;
 
 /* Async Function fetching API */
 const getWeather = async (input) => {
