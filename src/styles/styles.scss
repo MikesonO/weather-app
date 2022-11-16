@@ -4,9 +4,12 @@
 /* Varirables */
 /** color **/
 $color1: #F4F4F4;
-$color1-t: #F4F4F2Bf;
+$color1-t: #F4F4F2BF;
 $color2: #686D76;
 $color3: #222831;
+$color3-t: #1e202280;
+$color4: #1e2022;
+
 
 /** border-radius **/
 $radius: 1.5rem;
@@ -198,6 +201,8 @@ main {
 
         #weather-icon {
           width: 150px;
+          height: 150px;
+          align-self: center;
         }
 
         .temperature {
@@ -239,11 +244,14 @@ main {
             }
           }
 
-          #description {
-            font-weight: 300;
+          .more-info{
             position: absolute;
             bottom: 0;
+
+          #description {
+            font-weight: 300;
           }
+        }
 
         }
 
@@ -285,7 +293,44 @@ main {
       }
     }
 
-    .forecast-info {}
+    .forecast-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+
+      .forecast-cards-container{
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1rem;
+
+      .forecast-cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        background-color: $color3-t;
+        border: 2.5px solid $color4;
+        width: 100px;
+        height: 150px;
+        border-radius: 10px;
+        transition: scale $duration;
+
+        &:hover{
+          scale: 1.1;
+        }
+
+        .forecast-icon{
+          width: 50px;
+        }
+
+        
+      }
+    }
+
+
+    }
 
 
   }

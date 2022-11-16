@@ -44,10 +44,12 @@
             <div class="temperature">
               <h1 id="temp"></h1>
               <button id="temp-unit" class="metric">
-                <span id="celsius">°C</span>│<span class="gap"></span
+                <span id="celsius">°C</span><span class="gap">│</span
                 ><span id="fahrenheit">°F</span>
               </button>
-              <h3 id="description"></h3>
+              <div class="more-info">
+                <h3 id="description"></h3>
+              </div>
             </div>
           </div>
 
@@ -56,7 +58,7 @@
               <i class="icon fa-solid fa-temperature-quarter"></i>
               <div class="info">
                 <p>High</p>
-                <p id="max-temp">20°C</p>
+                <p id="max-temp"></p>
               </div>
             </div>
 
@@ -64,7 +66,7 @@
               <i id="wind-speed-arrow" class="icon fa-solid fa-arrow-up"></i>
               <div class="info">
                 <p>Wind</p>
-                <p id="wind-speed">12 mph</p>
+                <p id="wind-speed"></p>
               </div>
             </div>
 
@@ -72,7 +74,7 @@
               <img class="sun-icon" src="../src/assets/icons/sunrise.svg" />
               <div class="info">
                 <p>Sunrise</p>
-                <p id="sunrise">08:00 AM</p>
+                <p id="sunrise"></p>
               </div>
             </div>
 
@@ -80,7 +82,7 @@
               <i class="icon fa-solid fa-temperature-quarter"></i>
               <div class="info">
                 <p>Low</p>
-                <p id="min-temp">12°C</p>
+                <p id="min-temp"></p>
               </div>
             </div>
 
@@ -88,7 +90,7 @@
               <i class="icon fa-solid fa-droplet"></i>
               <div class="info">
                 <p>Humidity</p>
-                <p id="humidity">50%</p>
+                <p id="humidity"></p>
               </div>
             </div>
 
@@ -96,13 +98,79 @@
               <img class="sun-icon" src="../src/assets/icons/sunset.svg" />
               <div class="info">
                 <p>Sunset</p>
-                <p id="sunset">6:00 PM</p>
+                <p id="sunset"></p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="forecast-info"></div>
+        <div class="forecast-info">
+          <div class="forecast">Todays weather</div>
+          <div class="forecast-cards-container">
+            <div class="forecast-cards">
+              <h3 class="forecast-time">7am</h3>
+              <img
+                class="forecast-icon"
+                src="../src/assets/icons/clear_sky_night.png"
+              />
+              <h3 class="forecast-temp">8°C</h3>
+            </div>
+
+            <div class="forecast-cards">
+              <h3 class="forecast-time">7am</h3>
+              <img
+                class="forecast-icon"
+                src="../src/assets/icons/clear_sky_night.png"
+              />
+              <h3 class="forecast-temp">8°C</h3>
+            </div>
+
+            <div class="forecast-cards">
+              <h3 class="forecast-time">7am</h3>
+              <img
+                class="forecast-icon"
+                src="../src/assets/icons/clear_sky_night.png"
+              />
+              <h3 class="forecast-temp">8°C</h3>
+            </div>
+
+            <div class="forecast-cards">
+              <h3 class="forecast-time">7am</h3>
+              <img
+                class="forecast-icon"
+                src="../src/assets/icons/clear_sky_night.png"
+              />
+              <h3 class="forecast-temp">8°C</h3>
+            </div>
+
+            <div class="forecast-cards">
+              <h3 class="forecast-time">7am</h3>
+              <img
+                class="forecast-icon"
+                src="../src/assets/icons/clear_sky_night.png"
+              />
+              <h3 class="forecast-temp">8°C</h3>
+            </div>
+
+            <div class="forecast-cards">
+              <h3 class="forecast-time">7am</h3>
+              <img
+                class="forecast-icon"
+                src="../src/assets/icons/clear_sky_night.png"
+              />
+              <h3 class="forecast-temp">8°C</h3>
+            </div>
+
+            <div class="forecast-cards">
+              <h3 class="forecast-time">7am</h3>
+              <img
+                class="forecast-icon"
+                src="../src/assets/icons/clear_sky_night.png"
+              />
+              <h3 class="forecast-temp">8°C</h3>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <footer>
