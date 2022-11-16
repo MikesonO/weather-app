@@ -50,7 +50,7 @@ const weatherDescription = {
 };
 
 const getWeatherDescription = (weather) => {
-  let id = helperFunctions.capitaliseWords(weather.weather[0].icon);
+  let id = weather.weather[0].icon;
   id = id.slice(0, -1);
   return weatherDescription[id];
 }
@@ -110,21 +110,62 @@ const displayData = (location, weather, unit) => {
   humidity.textContent = `${weather.main.humidity}%`;
 
   const sunrise = document.getElementById("sunrise");
-  sunrise.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunrise)}`;
+  sunrise.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunrise).time}`;
   const sunset = document.getElementById("sunset");
-  sunset.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunset)}`;
-
-
-  // const timeAndDate = getLocalTime(weather.timezone);
-
-
-  // displayData(cityName, countryName, timeAndDate);
-
-  // const {
-  //   temp,
-  //   humidity
-  // } = weather.main;
+  sunset.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunset).time}`;
 
 }
 
-export default displayData;
+const createCard = (forecast, unit, i, timezone) => {
+  const card = document.createElement("div");
+  card.setAttribute("class", "forecast-card");
+
+  const time = document.createElement("h3");
+  time.setAttribute("class", "forecast-time");
+
+  if (i === 0) {
+    time.textContent = "Now"
+  } else {
+    time.textContent = `${dateFunction.formatTime(timezone, forecast.hourly[i].dt).time}`
+  }
+
+  const icon = document.createElement("img");
+  icon.setAttribute("class", "forecast-icon");
+
+  if (dateFunction.formatTime(timezone, forecast.hourly[i].dt).dayTime) {
+    icon.src = `${getWeatherDescription(forecast.hourly[i]).image}.png`;
+  } else {
+    icon.src = `${getWeatherDescription(forecast.hourly[i]).image}_night.png`;
+  }
+
+  icon.alt = "Weather Icon";
+
+  const temperature = document.createElement("h3");
+  temperature.setAttribute("class", "forecast-temp");
+
+  if (unit === "imperial") {
+    temperature.textContent = `${Math.round(forecast.hourly[i].temp)} °F`
+  } else if (unit === "metric") {
+    temperature.textContent = `${Math.round(forecast.hourly[i].temp)} °C`
+  }
+
+
+  card.append(time, icon, temperature)
+
+  return card;
+}
+
+const displayForecast = (forecast, unit, timezone) => {
+  const container = document.querySelector(".forecast-cards-container");
+  container.textContent = "";
+
+  for (let i = 0; i < 7; i += 1) {
+    container.append(createCard(forecast, unit, i, timezone));
+  }
+
+}
+
+export {
+  displayData,
+  displayForecast
+}

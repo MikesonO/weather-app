@@ -1,4 +1,7 @@
-import displayData from './displayData';
+import {
+  displayData,
+  displayForecast
+} from './displayData';
 
 const apiKey = process.env.API_KEY;
 
@@ -22,7 +25,7 @@ const getWeather = async (input) => {
     // Fetch Location
     const locationData = await inputResponse.json();
 
-    const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${locationData[0].lat}&lon=${locationData[0].lon}&appid=${apiKey}&units=${unit}`);
+    const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${locationData[0].lat}&lon=${locationData[0].lon}&units=${unit}&appid=${apiKey}`);
 
     // Fetch Weather Data for Location
     const weatherData = await weatherResponse.json();
@@ -31,18 +34,15 @@ const getWeather = async (input) => {
 
     displayData(locationData[0], weatherData, unit);
 
-    const {
-      humidity
-    } = weatherData.main;
+    const forecastReponse = await fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${locationData[0].lat}&lon=${locationData[0].lon}&exclude=current,minutely,alerts&units=${unit}&appid=${process.env.API_KEY2}`
+    );
 
-    // Get Wind Speed
-    console.log(`Wind Speed: ${Math.round(weatherData.wind.speed)
-    } mph`);
-    console.log(`Degree Angle: ${weatherData.wind.deg}°`);
+    const forecastData = await forecastReponse.json();
 
-    // Get Humidity
-    console.log(`Humidity: ${humidity}%`);
+    console.log(forecastData);
 
+    displayForecast(forecastData, unit, weatherData.timezone);
 
   } catch (error) {
     console.log(error);
