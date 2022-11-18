@@ -33,6 +33,17 @@ body {
   font-family: 'Poppins', sans-serif;
   display: grid;
   grid-template-rows: 100px auto 50px;
+
+  .video-bg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    filter: brightness(60%);
+  }
 }
 
 a {

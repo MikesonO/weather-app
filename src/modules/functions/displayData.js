@@ -5,47 +5,48 @@ const weatherDescription = {
   // Clear Sky
   '01': {
     image: "../src/assets/icons/clear_sky",
-    video: ""
+    video: "../src/assets/background/clear_sky.mp4"
   },
   // Few Clouds
   '02': {
     image: "../src/assets/icons/few_clouds",
-    video: ""
+    video: "../src/assets/background/few_clouds.mp4"
   },
   // Scattered Clouds
   '03': {
-    image: "../src/assets/icons/overcast_clouds",
-    video: ""
+    image: "../src/assets/icons/few_clouds",
+    video: "../src/assets/background/scattered_clouds.mp4"
   },
   // Broken Clouds
   '04': {
     image: "../src/assets/icons/overcast_clouds",
-    video: ""
+    video: "../src/assets/background/overcast_clouds.mp4"
   },
   // Shower Rain'
   '09': {
     image: "../src/assets/icons/shower_rain",
-    video: ""
+    video: "../src/assets/background/rain.mp4"
   },
   // Rain
   '10': {
     image: "../src/assets/icons/rain",
-    video: ""
+    video: "../src/assets/background/rain.mp4"
   },
   // Thunderstorm
   '11': {
     image: "../src/assets/icons/thunderstorm",
-    video: ""
+    video: "../src/assets/background/thunderstorm.mp4"
   },
   // Snow
   '13': {
     image: "../src/assets/icons/snow",
-    video: ""
+    video: "../src/assets/background/snow.mp4"
+
   },
   // Mist
   '50': {
     image: "../src/assets/icons/mist",
-    video: ""
+    video: "../src/assets/background/mist.mp4"
   }
 };
 
@@ -57,39 +58,57 @@ const getWeatherDescription = (weather) => {
 
 
 const displayData = (location, weather, unit) => {
-
+  // Display City
   const city = document.getElementById("city");
   city.textContent = `${location.name},`;
 
+  // Display Country
   const country = document.getElementById("country");
   country.textContent = location.country;
 
+  // Display City Date
   const date = document.getElementById("date");
   date.textContent = dateFunction.getLocalDate(weather.timezone).date;
 
+  // Display City Day
   const day = document.getElementById("day");
   day.textContent = `${dateFunction.getLocalDate(weather.timezone).day},`;
 
+  // Display City Time
   const time = document.getElementById("time");
   time.textContent = dateFunction.getLocalDate(weather.timezone).time;
 
-  const weatherInfo = getWeatherDescription(weather);
-  const weatherIcon = document.getElementById("weather-icon");
-
-  if (dateFunction.getLocalDate(weather.timezone).dayTime) {
-    weatherIcon.src = `${weatherInfo.image}.png`;
-  } else {
-    weatherIcon.src = `${weatherInfo.image}_night.png`;
-  }
-
-  const temp = document.getElementById("temp");
-  temp.textContent = Math.round(weather.main.temp);
-
+  // Display Weather Description
   const description = document.getElementById("description");
   description.textContent = helperFunctions.capitaliseWords(weather.weather[0].description);
 
+  // Display Weather Icon and Background
+  const weatherInfo = getWeatherDescription(weather);
+  const weatherIcon = document.getElementById("weather-icon");
+  const weatherBgContainer = document.querySelector(".video-bg");
+  weatherBgContainer.textContent = "";
+  const weatherBg = document.createElement("source");
+  weatherBg.setAttribute("type", "video/mp4");
 
+  if (dateFunction.getLocalDate(weather.timezone).dayTime) {
+    weatherIcon.src = `${weatherInfo.image}.png`;
+    weatherBg.src = weatherInfo.video;
+    if (description.textContent === "Broken Clouds") {
+      weatherBg.src = "../src/assets/background/few_clouds.mp4";
+    }
+  } else {
+    weatherIcon.src = `${weatherInfo.image}_night.png`;
+    weatherBg.src = "../src/assets/background/night.mp4";
+  }
 
+  weatherBgContainer.appendChild(weatherBg);
+  weatherBgContainer.load();
+
+  // Display City Temperature
+  const temp = document.getElementById("temp");
+  temp.textContent = Math.round(weather.main.temp);
+
+  // Display High, Low and Windspeed
   const maxTemp = document.getElementById("max-temp");
   const minTemp = document.getElementById("min-temp");
   const windSpeed = document.getElementById("wind-speed");
@@ -106,14 +125,15 @@ const displayData = (location, weather, unit) => {
     windSpeed.textContent = `${Math.round(weather.wind.speed)} m/s`;
   }
 
+  // Display Humidity
   const humidity = document.getElementById("humidity");
   humidity.textContent = `${weather.main.humidity}%`;
 
+  // Display Sunrise and Sunset
   const sunrise = document.getElementById("sunrise");
   sunrise.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunrise).time}`;
   const sunset = document.getElementById("sunset");
   sunset.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunset).time}`;
-
 }
 
 const createCard = (forecast, unit, i, timezone) => {
