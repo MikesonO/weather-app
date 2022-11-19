@@ -1,10 +1,14 @@
-import getWeather from "../functions/weatherApi";
+import {
+  getWeather,
+  getLocation
+} from "../functions/weatherApi";
 
 export default function eventEmitter() {
   const searchBar = document.getElementById("city-search");
   const clearButton = document.querySelector("#clear-button");
   const searchButton = document.getElementById("search-button");
   const tempUnit = document.getElementById("temp-unit");
+  const locationBtn = document.getElementById("location-button");
 
   // Displays clear button if value is not empty
   searchBar.addEventListener("keyup", () => {
@@ -39,7 +43,9 @@ export default function eventEmitter() {
     }
   });
 
+  // Get User Location
+  locationBtn.addEventListener("click", getLocation);
 
-  // Fetch Weather when page is loaded
-  getWeather("london");
+  // Get Weather when page is loaded
+  getWeather("London");
 }

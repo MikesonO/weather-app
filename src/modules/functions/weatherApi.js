@@ -29,9 +29,6 @@ const getWeather = async (input) => {
 
     // Fetch Weather Data for Location
     const weatherData = await weatherResponse.json();
-
-    console.log(weatherData);
-
     displayData(locationData[0], weatherData, unit);
 
     const forecastReponse = await fetch(
@@ -39,9 +36,6 @@ const getWeather = async (input) => {
     );
 
     const forecastData = await forecastReponse.json();
-
-    console.log(forecastData);
-
     displayForecast(forecastData, unit, weatherData);
 
   } catch (error) {
@@ -50,4 +44,28 @@ const getWeather = async (input) => {
 
 }
 
-export default getWeather;
+// Get User Location
+const getLocation = () => {
+  const success = async (position) => {
+    const {
+      latitude,
+      longitude
+    } = position.coords
+
+    const fetchLocation = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`, {
+      mode: 'cors'
+    });
+
+    const currentLocation = await fetchLocation.json();
+    getWeather(currentLocation.city);
+  }
+
+  const error = () => {}
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+
+export {
+  getWeather,
+  getLocation
+};
