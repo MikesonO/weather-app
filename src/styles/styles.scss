@@ -52,7 +52,7 @@ a {
   text-decoration: none;
   color: $color3;
   transition: color $duration;
-  
+
   &:hover {
     color: $color2;
   }
@@ -125,7 +125,8 @@ header {
       }
     }
 
-    #search-button {
+    #search-button,
+    #location-button {
       position: relative;
       width: 40px;
       height: 40px;
@@ -138,12 +139,14 @@ header {
       &:hover {
         background-color: $color1;
 
-        #search-icon {
+        #search-icon,
+        #location-icon {
           scale: 1.2;
         }
       }
 
-      #search-icon {
+      #search-icon,
+      #location-icon {
         position: absolute;
         margin: auto;
         position: absolute;
@@ -156,7 +159,6 @@ header {
         pointer-events: none;
         transition: scale $duration;
       }
-
     }
   }
 }
