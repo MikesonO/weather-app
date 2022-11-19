@@ -42,7 +42,7 @@ const getWeather = async (input) => {
 
     console.log(forecastData);
 
-    displayForecast(forecastData, unit, weatherData.timezone);
+    displayForecast(forecastData, unit, weatherData);
 
   } catch (error) {
     console.log(error);

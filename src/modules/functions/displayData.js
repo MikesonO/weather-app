@@ -137,9 +137,11 @@ const displayData = (location, weather, unit) => {
 }
 
 const createCard = (forecast, unit, i, timezone) => {
+  // Create Card Div
   const card = document.createElement("div");
   card.setAttribute("class", "forecast-card");
 
+  // Create and Display Time
   const time = document.createElement("h3");
   time.setAttribute("class", "forecast-time");
 
@@ -149,8 +151,10 @@ const createCard = (forecast, unit, i, timezone) => {
     time.textContent = `${dateFunction.formatTime(timezone, forecast.hourly[i].dt).time}`
   }
 
+  // Create and Display Weather Icon
   const icon = document.createElement("img");
   icon.setAttribute("class", "forecast-icon");
+  icon.alt = "Weather Icon";
 
   if (dateFunction.formatTime(timezone, forecast.hourly[i].dt).dayTime) {
     icon.src = `${getWeatherDescription(forecast.hourly[i]).image}.png`;
@@ -158,8 +162,7 @@ const createCard = (forecast, unit, i, timezone) => {
     icon.src = `${getWeatherDescription(forecast.hourly[i]).image}_night.png`;
   }
 
-  icon.alt = "Weather Icon";
-
+  // Create and Display Temperature
   const temperature = document.createElement("h3");
   temperature.setAttribute("class", "forecast-temp");
 
@@ -169,18 +172,63 @@ const createCard = (forecast, unit, i, timezone) => {
     temperature.textContent = `${Math.round(forecast.hourly[i].temp)} °C`
   }
 
+  if (i === 0) {
+    const todayIcon = document.getElementById("weather-icon");
+    const todayTemp = document.getElementById("temp");
+    const todayUnit = unit === "imperial" ? "°F" : "°C";
+    icon.src = todayIcon.src;
+    temperature.textContent = `${todayTemp.textContent} ${todayUnit}`;
+  }
 
   card.append(time, icon, temperature)
 
   return card;
 }
 
-const displayForecast = (forecast, unit, timezone) => {
+
+const displayForecast = (forecast, unit, weather) => {
   const container = document.querySelector(".forecast-cards-container");
   container.textContent = "";
 
   for (let i = 0; i < 7; i += 1) {
-    container.append(createCard(forecast, unit, i, timezone));
+    container.append(createCard(forecast, unit, i, weather.timezone));
+  }
+
+
+  // Change Forecast cards to White
+  const cards = document.querySelectorAll(".forecast-cards-container div");
+  const changeCardsWhite = () => {
+    cards.forEach(card => {
+      card.classList.add("light"); // eslint-disable-line no-param-reassign
+    })
+  }
+
+  // Change cards if NightTime
+  if (!dateFunction.getLocalDate(weather.timezone).dayTime) {
+    changeCardsWhite();
+  }
+
+  // Change cards based on weather description
+  switch (getWeatherDescription(weather)) {
+    // Shower Rain
+    case weatherDescription["09"]:
+      changeCardsWhite();
+      break;
+      // Rain
+    case weatherDescription["10"]:
+      changeCardsWhite();
+      break;
+      // Thunderstorm
+    case weatherDescription["11"]:
+      changeCardsWhite();
+      break;
+      // Snow
+    case weatherDescription["13"]:
+      changeCardsWhite();
+      break;
+
+
+    default:
   }
 
 }

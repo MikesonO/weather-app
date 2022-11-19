@@ -4,10 +4,11 @@
 /* Varirables */
 /** color **/
 $color1: #F4F4F4;
-$color1-t: #F4F4F2BF;
-$color2: #686D76;
+$color1-t: #f4f4f280;
+$color1-t2: #F4F4F425;
+$color2: #A5A5A5;
 $color3: #222831;
-$color3-t: #1e202280;
+$color3-t: #1e202250;
 $color4: #1e2022;
 
 
@@ -47,14 +48,13 @@ body {
 }
 
 a {
+  text-shadow: none;
   text-decoration: none;
-  color: $color2;
-  transition: color $duration,
-    font-size $duration;
-
+  color: $color3;
+  transition: color $duration;
+  
   &:hover {
-    color: $color1;
-    font-size: 1.025rem;
+    color: $color2;
   }
 }
 
@@ -309,7 +309,6 @@ main {
       flex-direction: column;
       gap: 1rem;
 
-
       .forecast-cards-container{
         display: grid;
         grid-template-columns: repeat(7, 1fr);
@@ -322,11 +321,16 @@ main {
         justify-content: center;
         gap: .5rem;
         background-color: $color3-t;
-        border: 2.5px solid $color4;
         width: 100px;
         height: 150px;
+        font-family: inherit;
+        font-weight: 200;
         border-radius: 10px;
         transition: scale $duration;
+
+        &.light{
+          background-color: $color1-t2;
+        }
 
         &:hover{
           scale: 1.1;
@@ -335,12 +339,8 @@ main {
         .forecast-icon{
           width: 50px;
         }
-
-        
       }
     }
-
-
     }
 
 
@@ -356,4 +356,12 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $color1;
+  border-radius: 15px 0 0 0;
+  padding: 0 1rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 1.05rem;
+  font-weight: 300;
 }
