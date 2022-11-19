@@ -233,7 +233,28 @@ const displayForecast = (forecast, unit, weather) => {
 
 }
 
+const displayError = (input) => {
+  const errorContainer = document.querySelector(".error-container");
+  const errorMessage = document.getElementById("error-message");
+
+  errorMessage.textContent = `Could not find ${input}`;
+  errorContainer.classList.add("active");
+
+  const inputField = document.getElementById("city-search");
+  setTimeout(() => {
+    errorContainer.classList.remove("active");
+  }, 2500);
+
+  if (inputField) {
+    inputField.addEventListener("click", () => {
+      errorContainer.classList.remove("active");
+    })
+  }
+
+}
+
 export {
   displayData,
-  displayForecast
+  displayForecast,
+  displayError
 }

@@ -1,6 +1,7 @@
 import {
   displayData,
-  displayForecast
+  displayForecast,
+  displayError
 } from './displayData';
 
 const apiKey = process.env.API_KEY;
@@ -39,7 +40,7 @@ const getWeather = async (input) => {
     displayForecast(forecastData, unit, weatherData);
 
   } catch (error) {
-    console.log(error);
+    displayError(input);
   }
 
 }

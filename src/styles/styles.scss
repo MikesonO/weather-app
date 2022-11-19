@@ -65,6 +65,7 @@ button {
   outline: none;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: center;
@@ -121,7 +122,33 @@ header {
           color: $color3;
           pointer-events: none;
         }
+      }
 
+      .error-container{
+        display: none;
+        color: $color1; 
+        text-align: center;
+        position: absolute; 
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -2rem;  
+        width: 350px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+
+        #error-message{
+          position: relative;
+          font-size: 0.9rem;
+          font-weight: 300;
+        }
+
+        &.active{
+          display: block;
+          #error-message{
+            animation: shake 0.2s;
+          }
+        }
       }
     }
 
@@ -163,6 +190,7 @@ header {
   }
 }
 
+/* Main */
 main {
   color: $color1;
   padding: 0 15%;
@@ -354,6 +382,7 @@ main {
   user-select: none;
 }
 
+/* Footer */
 footer {
   display: flex;
   justify-content: center;
@@ -366,4 +395,17 @@ footer {
   right: 0;
   font-size: 1.05rem;
   font-weight: 300;
+}
+
+/* Animations */
+@keyframes shake {
+	0%,100%{
+		left: 0px;
+	}
+	20%,80%{
+		left: -15px;
+	}
+	40%,60%{
+		left: 15px;
+	}
 }
