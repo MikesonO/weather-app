@@ -108,22 +108,13 @@ const displayData = (location, weather, unit) => {
   const temp = document.getElementById("temp");
   temp.textContent = Math.round(weather.main.temp);
 
-  // Display High, Low and Windspeed
-  const maxTemp = document.getElementById("max-temp");
-  const minTemp = document.getElementById("min-temp");
+  // Display Windspeed
   const windSpeed = document.getElementById("wind-speed");
   const windSpeedIcon = document.getElementById("wind-speed-arrow");
   windSpeedIcon.style.transform = `rotate(${weather.wind.deg}deg)`;
 
-  if (unit === "imperial") {
-    maxTemp.textContent = `${Math.round(weather.main.temp_max)} °F`;
-    minTemp.textContent = `${Math.round(weather.main.temp_min)} °F`;
-    windSpeed.textContent = `${Math.round(weather.wind.speed)} mph`;
-  } else if (unit === "metric") {
-    maxTemp.textContent = `${Math.round(weather.main.temp_max)} °C`;
-    minTemp.textContent = `${Math.round(weather.main.temp_min)} °C`;
-    windSpeed.textContent = `${Math.round(weather.wind.speed)} m/s`;
-  }
+  const windSpeedUnit = unit === "imperial" ? "mph" : "m/s";
+  windSpeed.textContent = `${Math.round(weather.wind.speed)} ${windSpeedUnit}`;
 
   // Display Humidity
   const humidity = document.getElementById("humidity");
@@ -194,6 +185,20 @@ const displayForecast = (forecast, unit, weather) => {
     container.append(createCard(forecast, unit, i, weather.timezone));
   }
 
+  // Display Min and Max Temp
+  const forecastTemp = document.querySelectorAll(".forecast-temp");
+  const forecastArray = [];
+  forecastTemp.forEach(temp => {
+    let temperature = temp.textContent;
+    temperature = temperature.slice(0, -3);
+    forecastArray.push(temperature);
+  });
+
+  const maxTemp = document.getElementById("max-temp");
+  const minTemp = document.getElementById("min-temp");
+  const todayUnit = unit === "imperial" ? "°F" : "°C";
+  maxTemp.textContent = `${Math.max(...forecastArray)} ${todayUnit}`;
+  minTemp.textContent = `${Math.min(...forecastArray)} ${todayUnit}`;
 
   // Change Forecast cards to White
   const cards = document.querySelectorAll(".forecast-cards-container div");
