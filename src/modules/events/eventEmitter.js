@@ -27,7 +27,16 @@ export default function eventEmitter() {
   })
 
   // Get User's Input
-  searchButton.addEventListener("click", () => getWeather(searchBar.value));
+  searchButton.addEventListener("click", () => {
+    console.log(searchBar.value.trim().length === 0);
+    if (searchBar.value.trim().length === 0) {
+      clearButton.classList.remove("active");
+      searchBar.value = "";
+      searchBar.select();
+    } else {
+      getWeather(searchBar.value)
+    }
+  });
 
   tempUnit.addEventListener("click", () => {
     const city = document.getElementById("city").innerText;
