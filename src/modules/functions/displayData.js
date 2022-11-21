@@ -181,7 +181,7 @@ const displayForecast = (forecast, unit, weather) => {
   const container = document.querySelector(".forecast-cards-container");
   container.textContent = "";
 
-  for (let i = 0; i < 7; i += 1) {
+  for (let i = 0; i < 8; i += 1) {
     container.append(createCard(forecast, unit, i, weather.timezone));
   }
 
