@@ -1,6 +1,11 @@
 import dateFunction from "./dateConversion";
 import helperFunctions from './helperFunctions';
 
+const getImages = require.context("../../assets/icons/", true, /^\.\/.*\.png$/);
+const getVideos = require.context("../../assets/background/", true, /^\.\/.*\.mp4$/);
+getImages.keys().map(getImages);
+getVideos.keys().map(getVideos);
+
 const weatherDescription = {
   // Clear Sky
   '01': {
