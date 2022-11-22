@@ -1,57 +1,86 @@
 import dateFunction from "./dateConversion";
 import helperFunctions from './helperFunctions';
-
-const getImages = require.context("../../assets/icons/", true, /^\.\/.*\.png$/);
-const getVideos = require.context("../../assets/background/", true, /^\.\/.*\.mp4$/);
-getImages.keys().map(getImages);
-getVideos.keys().map(getVideos);
+import clearSky from "../../assets/icons/clear_sky.png";
+import clearSkyNight from "../../assets/icons/clear_sky_night.png";
+import clearSkyVideo from "../../assets/background/clear_sky.mp4";
+import fewClouds from "../../assets/icons/few_clouds.png";
+import fewCloudsNight from "../../assets/icons/few_clouds_night.png";
+import fewCloudsVideo from "../../assets/background/few_clouds.mp4";
+import scatteredCloudsVideo from "../../assets/background/scattered_clouds.mp4";
+import brokenClouds from "../../assets/icons/overcast_clouds.png";
+import brokenCloudsNight from "../../assets/icons/overcast_clouds_night.png";
+import brokenCloudsVideo from "../../assets/background/overcast_clouds.mp4";
+import showerRain from "../../assets/icons/shower_rain.png";
+import showerRainNight from "../../assets/icons/shower_rain_night.png";
+import rain from "../../assets/icons/rain.png";
+import rainNight from "../../assets/icons/rain_night.png";
+import rainVideo from "../../assets/background/rain.mp4";
+import thunderstorm from "../../assets/icons/thunderstorm.png";
+import thunderstormNight from "../../assets/icons/thunderstorm_night.png";
+import thunderstormVideo from "../../assets/background/thunderstorm.mp4";
+import snow from "../../assets/icons/snow.png";
+import snowNight from "../../assets/icons/snow_night.png";
+import snowVideo from "../../assets/background/snow.mp4";
+import mist from "../../assets/icons/mist.png";
+import mistNight from "../../assets/icons/mist_night.png";
+import mistVideo from "../../assets/background/mist.mp4";
+import sunriseIcon from "../../assets/icons/sunrise.svg";
+import sunsetIcon from "../../assets/icons/sunset.svg";
 
 const weatherDescription = {
   // Clear Sky
   '01': {
-    image: "../src/assets/icons/clear_sky",
-    video: "../src/assets/background/clear_sky.mp4"
+    dayImage: clearSky,
+    nightImage: clearSkyNight,
+    video: clearSkyVideo
   },
   // Few Clouds
   '02': {
-    image: "../src/assets/icons/few_clouds",
-    video: "../src/assets/background/few_clouds.mp4"
+    dayImage: fewClouds,
+    nightImage: fewCloudsNight,
+    video: fewCloudsVideo
   },
   // Scattered Clouds
   '03': {
-    image: "../src/assets/icons/few_clouds",
-    video: "../src/assets/background/scattered_clouds.mp4"
+    dayImage: fewClouds,
+    nightImage: fewCloudsNight,
+    video: scatteredCloudsVideo
   },
   // Broken Clouds
   '04': {
-    image: "../src/assets/icons/overcast_clouds",
-    video: "../src/assets/background/overcast_clouds.mp4"
+    dayImage: brokenClouds,
+    nightImage: brokenCloudsNight,
+    video: brokenCloudsVideo
   },
   // Shower Rain'
   '09': {
-    image: "../src/assets/icons/shower_rain",
-    video: "../src/assets/background/rain.mp4"
+    dayImage: showerRain,
+    nightImage: showerRainNight,
+    video: rainVideo
   },
   // Rain
   '10': {
-    image: "../src/assets/icons/rain",
-    video: "../src/assets/background/rain.mp4"
+    dayImage: rain,
+    nightImage: rainNight,
+    video: rainVideo
   },
   // Thunderstorm
   '11': {
-    image: "../src/assets/icons/thunderstorm",
-    video: "../src/assets/background/thunderstorm.mp4"
+    dayImage: thunderstorm,
+    nightImage: thunderstormNight,
+    video: thunderstormVideo
   },
   // Snow
   '13': {
-    image: "../src/assets/icons/snow",
-    video: "../src/assets/background/snow.mp4"
-
+    dayImage: snow,
+    nightImage: snowNight,
+    video: snowVideo
   },
   // Mist
   '50': {
-    image: "../src/assets/icons/mist",
-    video: "../src/assets/background/mist.mp4"
+    dayImage: mist,
+    nightImage: mistNight,
+    video: mistVideo
   }
 };
 
@@ -96,13 +125,13 @@ const displayData = (location, weather, unit) => {
   weatherBg.setAttribute("type", "video/mp4");
 
   if (dateFunction.getLocalDate(weather.timezone).dayTime) {
-    weatherIcon.src = `${weatherInfo.image}.png`;
+    weatherIcon.src = weatherInfo.dayImage;
     weatherBg.src = weatherInfo.video;
     if (description.textContent === "Broken Clouds") {
       weatherBg.src = "../src/assets/background/few_clouds.mp4";
     }
   } else {
-    weatherIcon.src = `${weatherInfo.image}_night.png`;
+    weatherIcon.src = weatherInfo.nightImage;
     weatherBg.src = "../src/assets/background/night.mp4";
   }
 
@@ -127,9 +156,13 @@ const displayData = (location, weather, unit) => {
 
   // Display Sunrise and Sunset
   const sunrise = document.getElementById("sunrise");
+  const sunriseImage = document.getElementById("sunrise-icon");
   sunrise.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunrise).time}`;
+  sunriseImage.src = sunriseIcon;
   const sunset = document.getElementById("sunset");
+  const sunsetImage = document.getElementById("sunset-icon");
   sunset.textContent = `${dateFunction.formatTime(weather.timezone, weather.sys.sunset).time}`;
+  sunsetImage.src = sunsetIcon;
 }
 
 const createCard = (forecast, unit, i, timezone) => {
@@ -153,9 +186,9 @@ const createCard = (forecast, unit, i, timezone) => {
   icon.alt = "Weather Icon";
 
   if (dateFunction.formatTime(timezone, forecast.hourly[i].dt).dayTime) {
-    icon.src = `${getWeatherDescription(forecast.hourly[i]).image}.png`;
+    icon.src = getWeatherDescription(forecast.hourly[i]).dayImage;
   } else {
-    icon.src = `${getWeatherDescription(forecast.hourly[i]).image}_night.png`;
+    icon.src = getWeatherDescription(forecast.hourly[i]).nightImage;
   }
 
   // Create and Display Temperature
