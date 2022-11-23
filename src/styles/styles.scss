@@ -208,10 +208,13 @@ main {
     .city-info {
       display: flex;
       justify-content: space-between;
+      gap: 1rem;
 
       .city-location {
         display: flex;
         align-items: flex-end;
+        position: relative;
+        top: 2.5px;
 
         #city {
           font-weight: 300;
@@ -236,6 +239,7 @@ main {
       display: flex;
       position: relative;
       flex-wrap: wrap;
+      gap: 2.5rem;
 
       .temp-info {
         flex: 1;
@@ -302,11 +306,13 @@ main {
       }
 
       .additional-info {
+        height: fit-content;
+        width: 100%;
         flex: 1;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto;
-        padding-left: 2.5rem;
+        gap: 2.5rem;
 
         .card {
           display: flex;
@@ -460,7 +466,7 @@ footer {
     .weather-info {
       .weather-detail {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
 
         .temp-info {
           width: 100%;
@@ -474,12 +480,33 @@ footer {
         }
 
         .additional-info {
-          padding: 0;
-          grid-template-columns: repeat(auto-fit, .5);
+          gap: .5rem;
+          font-size: .8rem;
+          padding: 0 1rem;
+          justify-items: center;
 
+          .card{
+            .sun-icon,
+            .icon{
+              font-size: 1.5rem;
+              width: 24px;
+            }
 
-          .card {
-            justify-content: center;
+            #wind-speed-arrow{
+              position: relative;
+              left: 7.5px;
+            }
+
+            .info{
+
+            .wind-speed-text,
+            #wind-speed{
+              position: relative;
+              left: 6px;
+            }
+
+          }
+
           }
         }
 
@@ -500,19 +527,17 @@ footer {
 
 @media (max-width: 500px) {
 
+
+  
   #city,
   #country{
-    font-size: 1.5rem;
+    font-size: 1.15rem;
   }
 
   .city-date h2{
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
- 
-    .icon{
-      font-size: 1.5rem !important;
-    }
 
 
 
