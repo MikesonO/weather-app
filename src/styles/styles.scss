@@ -455,6 +455,9 @@ footer {
       .form-input {
         width: 60vw;
 
+        .error-container{
+          width: 275px;
+        }
       }
     }
 
@@ -527,8 +530,6 @@ footer {
 
 @media (max-width: 500px) {
 
-
-  
   #city,
   #country{
     font-size: 1.15rem;
