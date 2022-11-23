@@ -28,7 +28,6 @@ export default function eventEmitter() {
 
   // Get User's Input
   searchButton.addEventListener("click", () => {
-    console.log(searchBar.value.trim().length === 0);
     if (searchBar.value.trim().length === 0) {
       clearButton.classList.remove("active");
       searchBar.value = "";
@@ -40,7 +39,6 @@ export default function eventEmitter() {
 
   tempUnit.addEventListener("click", () => {
     const city = document.getElementById("city").innerText;
-    console.log(city);
     if (tempUnit.classList.contains("metric")) {
       tempUnit.classList.remove("metric");
       tempUnit.classList.add("imperial");

@@ -2,30 +2,32 @@ import dateFunction from "./dateConversion";
 import helperFunctions from './helperFunctions';
 import clearSky from "../../assets/icons/clear_sky.png";
 import clearSkyNight from "../../assets/icons/clear_sky_night.png";
-import clearSkyVideo from "../../assets/background/clear_sky.mp4";
 import fewClouds from "../../assets/icons/few_clouds.png";
 import fewCloudsNight from "../../assets/icons/few_clouds_night.png";
-import fewCloudsVideo from "../../assets/background/few_clouds.mp4";
-import scatteredCloudsVideo from "../../assets/background/scattered_clouds.mp4";
-import brokenClouds from "../../assets/icons/overcast_clouds.png";
-import brokenCloudsNight from "../../assets/icons/overcast_clouds_night.png";
-import brokenCloudsVideo from "../../assets/background/overcast_clouds.mp4";
+import overcastClouds from "../../assets/icons/overcast_clouds.png";
+import overcastCloudsNight from "../../assets/icons/overcast_clouds_night.png";
 import showerRain from "../../assets/icons/shower_rain.png";
 import showerRainNight from "../../assets/icons/shower_rain_night.png";
 import rain from "../../assets/icons/rain.png";
 import rainNight from "../../assets/icons/rain_night.png";
-import rainVideo from "../../assets/background/rain.mp4";
 import thunderstorm from "../../assets/icons/thunderstorm.png";
 import thunderstormNight from "../../assets/icons/thunderstorm_night.png";
-import thunderstormVideo from "../../assets/background/thunderstorm.mp4";
 import snow from "../../assets/icons/snow.png";
 import snowNight from "../../assets/icons/snow_night.png";
-import snowVideo from "../../assets/background/snow.mp4";
 import mist from "../../assets/icons/mist.png";
 import mistNight from "../../assets/icons/mist_night.png";
-import mistVideo from "../../assets/background/mist.mp4";
 import sunriseIcon from "../../assets/icons/sunrise.svg";
 import sunsetIcon from "../../assets/icons/sunset.svg";
+
+const clearSkyVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/914ca667d6c73ac3b6ef.mp4";
+const fewCloudsVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/e0431c3371a4bfd44daa.mp4";
+const scatteredCloudsVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/f26dbe92b18f09dab766.mp4";
+const overcastCloudsVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/ca6e3a9374f67a468c4f.mp4";
+const rainVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/2cdbec5ab7f4a1aaf035.mp4";
+const thunderstormVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/9cc215b1701816f38681.mp4";
+const snowVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/9543c939134a6d1830b0.mp4";
+const mistVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/c7b814c30b96f08f9f3c.mp4";
+const nightVideo = "https://github.com/MikesonO/weather-app/raw/main/dist/cc4db308cc34e313fa1b.mp4";
 
 const weatherDescription = {
   // Clear Sky
@@ -46,11 +48,11 @@ const weatherDescription = {
     nightImage: fewCloudsNight,
     video: scatteredCloudsVideo
   },
-  // Broken Clouds
+  // Overcast clouds
   '04': {
-    dayImage: brokenClouds,
-    nightImage: brokenCloudsNight,
-    video: brokenCloudsVideo
+    dayImage: overcastClouds,
+    nightImage: overcastCloudsNight,
+    video: overcastCloudsVideo
   },
   // Shower Rain'
   '09': {
@@ -128,11 +130,11 @@ const displayData = (location, weather, unit) => {
     weatherIcon.src = weatherInfo.dayImage;
     weatherBg.src = weatherInfo.video;
     if (description.textContent === "Broken Clouds") {
-      weatherBg.src = "../src/assets/background/few_clouds.mp4";
+      weatherBg.src = fewCloudsVideo;
     }
   } else {
     weatherIcon.src = weatherInfo.nightImage;
-    weatherBg.src = "../src/assets/background/night.mp4";
+    weatherBg.src = nightVideo;
   }
 
   weatherBgContainer.appendChild(weatherBg);
@@ -267,6 +269,10 @@ const displayForecast = (forecast, unit, weather) => {
       break;
       // Snow
     case weatherDescription["13"]:
+      changeCardsWhite();
+      break;
+      // Mist
+    case weatherDescription["50"]:
       changeCardsWhite();
       break;
 
