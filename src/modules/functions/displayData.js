@@ -119,22 +119,25 @@ const setupLoop = (active, standby) => {
 };
 
 const setBackgroundVideo = (src) => {
-  const existing = document.querySelector(".video-bg");
-  const next = makeVideoEl(src);
+  const allExisting = Array.from(document.querySelectorAll(".video-bg"));
 
+  // Fade out and remove all current video elements
+  allExisting.forEach(v => {
+    v.ontimeupdate = null;
+    v.style.opacity = "0";
+    setTimeout(() => v.remove(), 600);
+  });
+
+  const next = makeVideoEl(src);
   document.body.insertBefore(next, document.body.firstChild);
 
   next.oncanplay = () => {
     next.style.opacity = "1";
-    if (existing) {
-      existing.style.opacity = "0";
-      setTimeout(() => {
-        existing.remove();
-        const standby = makeVideoEl(src);
-        document.body.insertBefore(standby, document.body.firstChild);
-        standby.oncanplay = () => setupLoop(next, standby);
-      }, 600);
-    }
+    setTimeout(() => {
+      const standby = makeVideoEl(src);
+      document.body.insertBefore(standby, document.body.firstChild);
+      standby.oncanplay = () => setupLoop(next, standby);
+    }, 600);
   };
 };
 
