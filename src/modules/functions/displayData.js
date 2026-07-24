@@ -168,50 +168,44 @@ const displayData = (location, weather, unit) => {
 }
 
 const createCard = (forecast, unit, i, timezone) => {
-  // Create Card Div
+  const entry = forecast.list[i];
+
   const card = document.createElement("div");
   card.setAttribute("class", "forecast-card");
 
-  // Create and Display Time
   const time = document.createElement("h3");
   time.setAttribute("class", "forecast-time");
 
   if (i === 0) {
-    time.textContent = "Now"
+    time.textContent = "Now";
   } else {
-    time.textContent = `${dateFunction.formatTime(timezone, forecast.hourly[i].dt).time}`
+    time.textContent = dateFunction.formatTime(timezone, entry.dt).time;
   }
 
-  // Create and Display Weather Icon
   const icon = document.createElement("img");
   icon.setAttribute("class", "forecast-icon");
   icon.alt = "Weather Icon";
 
-  if (dateFunction.formatTime(timezone, forecast.hourly[i].dt).dayTime) {
-    icon.src = getWeatherDescription(forecast.hourly[i]).dayImage;
+  const isDay = entry.sys && entry.sys.pod === 'd';
+  if (isDay) {
+    icon.src = getWeatherDescription(entry).dayImage;
   } else {
-    icon.src = getWeatherDescription(forecast.hourly[i]).nightImage;
+    icon.src = getWeatherDescription(entry).nightImage;
   }
 
-  // Create and Display Temperature
   const temperature = document.createElement("h3");
   temperature.setAttribute("class", "forecast-temp");
-
-  if (unit === "imperial") {
-    temperature.textContent = `${Math.round(forecast.hourly[i].temp)} °F`
-  } else if (unit === "metric") {
-    temperature.textContent = `${Math.round(forecast.hourly[i].temp)} °C`
-  }
+  const todayUnit = unit === "imperial" ? "°F" : "°C";
+  temperature.textContent = `${Math.round(entry.main.temp)} ${todayUnit}`;
 
   if (i === 0) {
     const todayIcon = document.getElementById("weather-icon");
     const todayTemp = document.getElementById("temp");
-    const todayUnit = unit === "imperial" ? "°F" : "°C";
     icon.src = todayIcon.src;
     temperature.textContent = `${todayTemp.textContent} ${todayUnit}`;
   }
 
-  card.append(time, icon, temperature)
+  card.append(time, icon, temperature);
 
   return card;
 }

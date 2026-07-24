@@ -33,7 +33,7 @@ const getWeather = async (input) => {
     displayData(locationData[0], weatherData, unit);
 
     const forecastReponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${locationData[0].lat}&lon=${locationData[0].lon}&exclude=current,minutely,alerts&units=${unit}&appid=${process.env.API_KEY2}`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${locationData[0].lat}&lon=${locationData[0].lon}&units=${unit}&appid=${apiKey}`
     );
 
     const forecastData = await forecastReponse.json();
