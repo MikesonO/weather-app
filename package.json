@@ -24,7 +24,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "image-webpack-loader": "^8.1.0",
-    "node-sass": "^7.0.3",
+    "sass": "^1.77.0",
     "prettier": "2.7.1",
     "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",
