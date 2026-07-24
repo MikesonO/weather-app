@@ -35,18 +35,18 @@ body {
   display: grid;
   grid-template-rows: 100px 1fr 50px;
   position: relative;
+}
 
-  .video-bg {
-    object-fit: cover;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    filter: brightness(60%);
-  }
+.video-bg {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  filter: brightness(60%);
 }
 
 

@@ -92,6 +92,51 @@ const getWeatherDescription = (weather) => {
   return weatherDescription[id];
 }
 
+const makeVideoEl = (src) => {
+  const v = document.createElement("video");
+  v.className = "video-bg";
+  v.autoplay = true;
+  v.muted = true;
+  v.playsInline = true;
+  v.src = src;
+  v.style.opacity = "0";
+  v.style.transition = "opacity 0.6s ease";
+  return v;
+};
+
+const setupLoop = (active, standby) => {
+  active.ontimeupdate = () => {
+    if (!active.duration) return;
+    // When 1s from end, fade in standby
+    if (active.currentTime >= active.duration - 1 && standby.style.opacity === "0") {
+      standby.currentTime = 0;
+      standby.play();
+      standby.style.opacity = "1";
+      active.style.opacity = "0";
+      setTimeout(() => setupLoop(standby, active), 600);
+    }
+  };
+};
+
+const setBackgroundVideo = (src) => {
+  const existing = document.querySelector(".video-bg");
+  const next = makeVideoEl(src);
+
+  document.body.insertBefore(next, document.body.firstChild);
+
+  next.oncanplay = () => {
+    next.style.opacity = "1";
+    if (existing) {
+      existing.style.opacity = "0";
+      setTimeout(() => {
+        existing.remove();
+        const standby = makeVideoEl(src);
+        document.body.insertBefore(standby, document.body.firstChild);
+        standby.oncanplay = () => setupLoop(next, standby);
+      }, 600);
+    }
+  };
+};
 
 const displayData = (location, weather, unit) => {
   // Display City
@@ -121,24 +166,17 @@ const displayData = (location, weather, unit) => {
   // Display Weather Icon and Background
   const weatherInfo = getWeatherDescription(weather);
   const weatherIcon = document.getElementById("weather-icon");
-  const weatherBgContainer = document.querySelector(".video-bg");
-  weatherBgContainer.textContent = "";
-  const weatherBg = document.createElement("source");
-  weatherBg.setAttribute("type", "video/mp4");
 
+  let newSrc;
   if (dateFunction.getLocalDate(weather.timezone).dayTime) {
     weatherIcon.src = weatherInfo.dayImage;
-    weatherBg.src = weatherInfo.video;
-    if (description.textContent === "Broken Clouds") {
-      weatherBg.src = fewCloudsVideo;
-    }
+    newSrc = description.textContent === "Broken Clouds" ? fewCloudsVideo : weatherInfo.video;
   } else {
     weatherIcon.src = weatherInfo.nightImage;
-    weatherBg.src = nightVideo;
+    newSrc = nightVideo;
   }
 
-  weatherBgContainer.appendChild(weatherBg);
-  weatherBgContainer.load();
+  setBackgroundVideo(newSrc);
 
   // Display City Temperature
   const temp = document.getElementById("temp");
