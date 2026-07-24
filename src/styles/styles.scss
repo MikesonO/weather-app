@@ -29,11 +29,11 @@ $duration: .3s;
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background-color: $color3;
   font-family: 'Poppins', sans-serif;
   display: grid;
-  grid-template-rows: 100px auto 50px;
+  grid-template-rows: 100px 1fr 50px;
   position: relative;
 
   .video-bg {
